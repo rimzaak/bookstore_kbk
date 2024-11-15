@@ -6,16 +6,19 @@ import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 
 import { sellingFast, recentlyAdded, newReleases } from '@/constants';
+import Link from 'next/link';
 
 const Home = () => {
   return (
     <div className='flex-col'>
       <header className='flex h-40 bg-green-200'>
-        <div className='flex-col h-full content-center text-center font-alegreya m-auto'>
-          <div className='font-black text-5xl'>KBK</div>
-          <div className='font-extrabold text-2xl sm:text-3xl'>KEDAI BUKU KITA</div>
-          <div className='font-bold hidden sm:block sm:text-xl'>Your Destination for Pre-loved Books</div>
-        </div>
+        <Link href='/'>        
+          <div className='flex-col h-full content-center text-center font-alegreya m-auto'>
+            <div className='font-black text-5xl'>KBK</div>
+            <div className='font-extrabold text-2xl sm:text-3xl'>KEDAI BUKU KITA</div>
+            <div className='font-bold hidden sm:block sm:text-xl'>Your Destination for Pre-loved Books</div>
+          </div>
+        </Link>
         <div className='mr-5 p-2'>
           <SignIn />
         </div>
