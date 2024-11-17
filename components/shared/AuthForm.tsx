@@ -19,22 +19,41 @@ const AuthForm = ({ type } : { type: string }) => {
     const [user, setUser] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
 
+    const formSchema = authFormSchema(type)
+
     // 1. Define your form.
-    const form = useForm<z.infer<typeof authFormSchema>>({
-        resolver: zodResolver(authFormSchema),
+    const form = useForm<z.infer<typeof formSchema>>({
+        resolver: zodResolver(formSchema),
         defaultValues: {
             email: "",
             password: "",
+            firstName: "",
+            lastName: "",
+            dateOfBirth: "",
+            phoneNumber: "",
+            address1: "",
         },
     })
  
     // 2. Define a submit handler.
-    function onSubmit(values: z.infer<typeof authFormSchema>) {
+    const onSubmit = async (data: z.infer<typeof formSchema>) => {
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
         setIsLoading(true)
-        console.log(values)
-        setIsLoading(false)
+        try {
+            if (type === 'sign-up') {
+                
+            }
+
+            if (type === 'sign-in') {
+                
+            }
+        } catch (error) {
+            console.log(error)          
+        } finally {
+            setIsLoading(false)
+        }
+        console.log(data)
         // setUser('');
     }
 
@@ -60,7 +79,7 @@ const AuthForm = ({ type } : { type: string }) => {
                     <p>
                         {user 
                             ? 'List a book for sell or Browse to buy a book'
-                            : 'Please enter the details below to sign in'
+                            : 'Please enter your details'
                         }
                     </p>
                 </div>
@@ -76,6 +95,28 @@ const AuthForm = ({ type } : { type: string }) => {
                 : <>
                     <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)}>
+                            {type === 'sign-up' && (
+                                <>
+                                    <div className='flex gap-4'>
+                                        <CustomInput 
+                                        control={form.control} name='firstName' label='First Name' placeholder='Enter your first name'
+                                        />
+                                        <CustomInput 
+                                        control={form.control} name='lastName' label='Last Name' placeholder='Enter your last name'
+                                        />
+                                    </div>                                
+                                    <CustomInput 
+                                    control={form.control} name='dateOfBirth' label='Date of Birth' placeholder='yyyy-mm-dd'
+                                    />
+                                    <CustomInput 
+                                    control={form.control} name='phoneNumber' label='Phone Number' placeholder='01X-XXXXXXXX'
+                                    />
+                                    <CustomInput 
+                                    control={form.control} name='address1' label='Address' placeholder='Enter your address'
+                                    />
+                                </>
+                            )}
+                            
                             <CustomInput
                             control={form.control} name='email' label='Email' placeholder='Enter the Email'
                             />
