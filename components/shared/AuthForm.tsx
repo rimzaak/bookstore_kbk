@@ -119,22 +119,25 @@ const AuthForm = ({ type } : { type: string }) => {
                                         />
                                     </div>                                
                                     <CustomInput 
-                                    control={form.control} name='dateOfBirth' label='Date of Birth' placeholder='yyyy-mm-dd'
-                                    />
-                                    <CustomInput 
                                     control={form.control} name='phoneNumber' label='Phone Number' placeholder='01X-XXXXXXXX'
                                     />
                                     <CustomInput 
                                     control={form.control} name='address1' label='Address' placeholder='Enter your address'
                                     />
+                                    <CustomInput 
+                                    control={form.control} name='city' label='City' placeholder='Enter your city'
+                                    />
                                     <div className='flex gap-4'>
                                         <CustomInput 
-                                        control={form.control} name='city' label='City' placeholder='Enter your city'
+                                        control={form.control} name='state' label='State' placeholder='Enter your state'
                                         />
                                         <CustomInput 
                                         control={form.control} name='postalCode' label='Postal Code' placeholder='Enter your postcode'
                                         />
-                                    </div>                                
+                                    </div>    
+                                    <CustomInput 
+                                    control={form.control} name='dateOfBirth' label='Date of Birth' placeholder='yyyy-mm-dd'
+                                    />                            
                                 </>
                             )}
                             

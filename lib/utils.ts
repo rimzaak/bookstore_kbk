@@ -22,4 +22,8 @@ export const authFormSchema = (type: string) => z.object({
     address1: type === 'sign-in' ? z.string().optional() : z.string().max(50),
     postalCode: type === 'sign-in' ? z.string().optional() : z.string().min(5).max(5),
     city: type === 'sign-in' ? z.string().optional() : z.string().max(20),
+    state: type === 'sign-in' ? z.string().optional() : z.string().max(20),
 })
+
+// stringify the response from appwrite session.create because nextjs cannot pass objects from server side to the front end
+export const parseStringify = (value: any) => JSON.parse(JSON.stringify(value));
