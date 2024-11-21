@@ -4,22 +4,18 @@ import Carousel from '@/components/shared/Carousel';
 import SignIn from '@/components/shared/SignIn';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation'
 
 
-import { sellingFast, recentlyAdded, newReleases } from '@/constants';
+
+import { sellingFast } from '@/constants';
 import Link from 'next/link';
-import AuthForm from '@/components/shared/AuthForm';
-import { getLoggedInUser, logoutAccount } from '@/lib/actions/user.actions';
+import { getLoggedInUser } from '@/lib/actions/user.actions';
 
 const Home = async () => {
-  const router = useRouter();
+  
   const loggedIn = await getLoggedInUser();
-  const handleLogOut = async () => {
-    const loggedOut = await logoutAccount()
+  console.log(loggedIn);
 
-    if (loggedOut) router.push('/sign-in')
-  }
   return (
     <div className='flex-col'>
       <header className='flex h-40 bg-green-200'>
@@ -34,7 +30,7 @@ const Home = async () => {
           {
             loggedIn ? (
               <>
-                Hi {loggedIn.name}. <div onClick={handleLogOut}>Logout</div>
+                <SignIn name = {loggedIn.name}/>
               </>
             ) : (
               <>

@@ -66,8 +66,6 @@ const AuthForm = ({ type } : { type: string }) => {
         } finally {
             setIsLoading(false)
         }
-        console.log(data)
-        // setUser('');
     }
 
     return (
